@@ -55,7 +55,6 @@ The included `Jenkinsfile` automates:
 | Environment | URL |
 |-------------|-----|
 | Local Docker | http://localhost:8000 |
-| Production  | http://your-server-ip:8000 |
 
 ## 🚨 Troubleshooting
 
@@ -106,5 +105,3 @@ This README now includes:
 3. **Troubleshooting** for both Docker and Jenkins
 4. **Visual workflow** diagram
 5. **Production-ready** structure
-
-All in a single copy-paste file! Just replace `your-repo` and `your-server-ip` with your actual details.
