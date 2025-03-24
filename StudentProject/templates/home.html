@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2>Discover Our World</h2>
+    <p>Welcome to the most innovative platform built with Django. Experience seamless performance and beautiful design.</p>
+    
+    <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+        <div style="flex: 1; padding: 1.5rem; background: #f0f8ff; border-radius: 8px;">
+            <h3>Feature One</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div style="flex: 1; padding: 1.5rem; background: #f0f8ff; border-radius: 8px;">
+            <h3>Feature Two</h3>
+            <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+    </div>
+    
+    <a href="{% url 'about' %}" class="btn">Learn More</a>
+{% endblock %}
