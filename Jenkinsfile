@@ -22,7 +22,7 @@ stage('Push to Docker Hub') {
     steps {
         script {
             withCredentials([usernamePassword(
-                credentialsId: 'docker-hub-credentials',
+                credentialsId: 'durgeshshukla09-dockerhub',
                 usernameVariable: 'DOCKER_USER',
                 passwordVariable: 'DOCKER_PASS'
             )]) {
