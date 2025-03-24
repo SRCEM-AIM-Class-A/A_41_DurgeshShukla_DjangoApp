@@ -2,11 +2,12 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('durgeshshukla09-dockerhub')
+        IMAGE_NAME = 'durgeshshukla09/studentproject'
+        CONTAINER_NAME = 'studentproject'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/SRCEM-AIM-Class-A/A_41_DurgeshShukla_DjangoApp.git'
             }
@@ -14,20 +15,22 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("durgeshshukla09/studentproject:latest")
-                }
+                bat "docker build -t %IMAGE_NAME% ."
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repositories/durgeshshukla09', DOCKER_HUB_CREDENTIALS) {
-                        docker.image("durgeshshukla09/studentproject:latest").push()
+                    withCredentials([usernamePassword(credentialsId: 'durgeshshukla09', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        bat """
+                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                        docker push %IMAGE_NAME%
+                        """
                     }
                 }
             }
         }
+
     }
 }
